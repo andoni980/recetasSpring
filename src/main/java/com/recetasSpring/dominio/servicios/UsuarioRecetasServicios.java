@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
-import com.recetasSpring.datos.DificultadRepository;
-import com.recetasSpring.datos.RecetasRepository;
+import com.recetasSpring.datos.repositorios.DificultadRepository;
+import com.recetasSpring.datos.repositorios.RecetasRepository;
 import com.recetasSpring.dominio.entidades.Dificultad;
 import com.recetasSpring.dominio.entidades.Receta;
 import com.recetasSpring.dominio.entidades.Usuario;

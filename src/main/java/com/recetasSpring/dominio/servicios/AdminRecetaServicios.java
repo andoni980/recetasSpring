@@ -3,8 +3,8 @@ package com.recetasSpring.dominio.servicios;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
-import com.recetasSpring.datos.DificultadRepository;
-import com.recetasSpring.datos.RecetasRepository;
+import com.recetasSpring.datos.repositorios.DificultadRepository;
+import com.recetasSpring.datos.repositorios.RecetasRepository;
 import com.recetasSpring.dominio.entidades.Receta;
 
 @Service

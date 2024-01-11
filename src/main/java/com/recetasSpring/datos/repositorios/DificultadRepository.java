@@ -1,4 +1,4 @@
-package com.recetasSpring.datos;
+package com.recetasSpring.datos.repositorios;
 
 import org.springframework.data.repository.CrudRepository;
 
