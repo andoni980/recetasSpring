@@ -36,7 +36,7 @@ public class AdminController {
 	@GetMapping("/delete")
 	public String borrar(Long id) {
 		adminServicios.delete(id);
-		return "redirect:/admin";
+		return "redirect:/admin/";
 	}
 	
 	@GetMapping("/receta")
