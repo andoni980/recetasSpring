@@ -1,4 +1,4 @@
-package com.recetasSpring.datos;
+package com.recetasSpring.datos.repositorios;
 
 import java.util.List;
 import java.util.Optional;
