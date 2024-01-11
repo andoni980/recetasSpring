@@ -14,11 +14,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Builder
+@SuperBuilder
 @Entity
 @Table(name="recetas")
 public class Receta {
@@ -31,9 +32,11 @@ public class Receta {
 	@Size(min=2, max=50)
 	private String nombre;
 	
+	
 	@NotNull
 	@ManyToOne
-	private Dificultad dificultad;
+	@Builder.Default
+	private Dificultad dificultad = Dificultad.NORMAL;
 	
 	@Size(max=200)
 	private String descripcion;

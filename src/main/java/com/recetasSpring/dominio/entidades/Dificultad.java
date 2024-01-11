@@ -27,6 +27,10 @@ import lombok.ToString;
 @Table(name = "dificultades")
 public class Dificultad {
 	
+	public static final Dificultad FACIL = Dificultad.builder().id(1L).build();
+	public static final Dificultad NORMAL = Dificultad.builder().id(2L).build();
+	public static final Dificultad DIFICIL = Dificultad.builder().id(3L).build();
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
