@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.recetasSpring.dominio.entidades.Receta;
 import com.recetasSpring.dominio.servicios.AdminServicios;
 import com.recetasSpring.dominio.servicios.ClaveDuplicadaException;
+import com.recetasSpring.dominio.servicios.UsuarioServicios;
 
 import jakarta.validation.Valid;
 
@@ -41,11 +42,13 @@ public class AdminController {
 	
 	@GetMapping("/receta")
 	public String receta(Model modelo, Long id, Receta receta) {
+		modelo.addAttribute("dificultades", adminServicios.getAllDificultades());
 		if(id != null) {
 			Optional<Receta> recetaOpt = adminServicios.getRecetaById(id);
 			
 			if( recetaOpt.isPresent() ) {
 			modelo.addAttribute("receta", recetaOpt.get());
+
 			}
 		}
 		return "admin/receta";
