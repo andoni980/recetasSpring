@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html th:replace="~{_plantilla_global :: plantilla(~{::title}, ~{::main})}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Recetas</title>
+</head>
+
+<body>
+
+	<main>
+
+	<div class="mx-5">
+		<!--		<pre th:text="${recetas}">Visualización de recetas</pre>-->
+
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+			Recetas por Dificultad
+		</button>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title fs-2" id="exampleModalLabel">Dificultades</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label class="fs-4" for="dificultades">Dificultad de las Recetas</label>
+							<select class="form-control selectpicker" th:field="*{dificultades}" id="dificultades"
+								onchange="location = this.value;">
+								<option class="fs-4" value="">Elige la Dificultad</option>
+
+								<option class="fs-4" th:each="dificultad : ${dificultades}" th:value="${dificultad.id}"
+									th:text="${dificultad.nivelDificultad}">
+
+									<a class="btn" th:href="@{/{id}(id=${dificultades.id})}"></a>
+
+								</option>
+
+							</select>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 g-4">
+			<div th:each="r: ${recetas}" class="col">
+				<div class="card h-100">
+					<img th:src="|https://picsum.photos/400/300?${r.id}|" src="https://picsum.photos/400/300"
+						class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 th:text="${r.nombre}" class="card-title">Receta</h5>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item d-flex justify-content-between">
+								<span class="fw-bold">Fecha:</span>
+								<span th:text="${#temporals.format(r.fecha)}">12 de Diciembre de
+									2023</span>
+							</li>
+							<li class="list-group-item d-flex justify-content-between">
+								<span class="fw-bold">Descripcion:</span>
+								<span th:text="${r.descripcion}">Receta</span>
+							</li>
+						</ul>
+						
+					</div>
+					<div class="card-footer">
+						<div class="text-center">
+							<a class="btn btn-secondary fs-5" th:href="@{/receta/{id}(id=${r.id})}" href="receta.html"><i class="bi bi-search"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+	</main>
+
+</body>
+
+</html>

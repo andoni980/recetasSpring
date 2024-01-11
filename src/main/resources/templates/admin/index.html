@@ -1,0 +1,48 @@
+<!DOCTYPE html>  
+<html th:replace="~{_plantilla_global :: plantilla(~{::title}, ~{::main})}" xmlsn:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Administracion</title>
+</head>
+<body>
+
+
+	<main>
+
+				<table class="table table-hover table-striped table-bordered">
+					<thead class="table-dark">
+						<tr>
+							<th>Id</th>
+							<th>Nombre</th>
+							<th>Fecha</th>
+							<th>Descripcion</th>
+							<th>OPCIONES</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="r : ${recetas}">
+							<td th:text="${r.id}">1</td>
+							<td th:text="${r.nombre}">Receta</td>
+							<td th:text="${r.fecha}">2000-01-02</td>
+							<td th:text="${r.descripcion}">Descripcion</td>
+							<td>
+								<a class="btn btn-sm btn-primary" href="receta.html" th:href="@{/admin/receta(id=${r.id})}">Editar</a>
+								<a onclick="return confirm('¿Estás seguro?')" class="btn btn-sm btn-danger" href="#" th:href="@{/admin/receta(id=${r.id})}">Borrar</a>
+							</td>
+						</tr>
+					</tbody>
+					<tfoot class="table-dark">
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>
+								<a class="btn btn-sm btn-primary" href="receta.html" th:href="@{/admin/receta}">Añadir</a>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+	</main>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html th:replace="~{_plantilla_global :: plantilla(~{::title}, ~{::main})}" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Productos</title>
+</head>
+
+<body>
+
+	<main>
+
+	<div class="mx-5">
+		<!--		<pre th:text="${productos}">Visualización de productos</pre>-->
+
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+			Productos por Categorias
+		</button>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title fs-2" id="exampleModalLabel">Categorias</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<label class="fs-4" for="categorias">Categorias de Productos</label>
+							<select class="form-control selectpicker" th:field="*{categorias}" id="categorias"
+								onchange="location = this.value;">
+								<option class="fs-4" value="">Elige alguna Categoria</option>
+
+								<option class="fs-4" th:each="categoria : ${categorias}" th:value="${categoria.idCategoria}"
+									th:text="${categoria.nombre}">
+
+									<a class="btn" th:href="@{/{id}(id=${categorias.idCategoria})}"></a>
+
+								</option>
+
+							</select>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		<div class="card mb-3" th:each="producto: ${productos}">
+			<div class="row g-0">
+				<div class="col-md-4">
+					<img th:src="|https://picsum.photos/400/300?${producto.idProducto}|" src="..."
+						class="img-fluid rounded-start" alt="...">
+				</div>
+				<div class="col-md-8">
+					<div class="card-body" >
+						<h5 th:text="${producto.nombre}" class="card-title">Producto</h5>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item d-flex justify-content-between">
+								<span class="fw-bold">Fecha de caducidad:</span>
+								<span th:text="${#temporals.format(producto.fechaCaducidad)}">12 de Diciembre de
+									2023</span>
+							</li>
+							<li class="list-group-item d-flex justify-content-between">
+								<span class="fw-bold">Precio:</span>
+								<span th:text="${#numbers.formatCurrency(producto.precio)}">1234,12€</span>
+							</li>
+							<li class="list-group-item d-flex justify-content-between">
+								<span class="fw-bold">Unidades:</span>
+								<span th:text="|${producto.stock} u|">5</span>
+							</li>
+							<li class="list-group-item d-flex justify-content-between">
+								<span class="fw-bold">EAN:</span>
+								<span th:text="${producto.codigoBarras}">123456789012</span>
+							</li>
+							<li class="list-group-item d-flex justify-content-between">
+								<a class="btn btn-primary fs-5" th:href="@{/carrito(idProducto=${producto.idProducto})}"
+								href="carrito.html">Agregar a carrito <i class="bi bi-bag-plus-fill"></i></a>
+								<a class="btn btn-secondary fs-5" th:href="@{/producto/{id}(id=${producto.idProducto})}"
+								href="producto.html"><i class="bi bi-search"></i></a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="card-footer">
+						<div class="text-center">
+		<!--					<a class="btn btn-primary fs-5" th:href="@{/carrito(idProducto=${producto.idProducto})}"
+								href="carrito.html"><i class="bi bi-bag-plus-fill"></i></a>
+							<a class="btn btn-secondary fs-5" th:href="@{/producto/{id}(id=${producto.idProducto})}"
+								href="producto.html"><i class="bi bi-search"></i></a-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+	</main>
+
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html th:replace="~{_plantilla_global :: plantilla(~{::title}, ~{::main})}" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Productos por Categorias</title>
+</head>
+<body>
+
+	<main class="container-fluid">
+		
+				<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+		  Categorias
+		</button>
+	
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title fs-2 fw-bold " id="exampleModalLabel">Categorias</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		                <div class="form-group">
+		                    <!-- <label class="fs-3 fw-bold fst-italic" for="categorias">Categorias de Productos</label>-->
+		                    <select class="form-control selectpicker" th:field="*{categorias}" id="categorias"  onchange="location = this.value;">
+		                        <option class="fs-4" value="">Categorias de Productos</option>
+		                        <option class="fs-5" th:each="categoria : ${categorias}"  th:value="${categoria.idCategoria}" th:text="${categoria.nombre}">
+									<a class="btn" th:href="@{/{id}(id=${categorias.idCategoria})}"></a>
+		                        </option>
+		                    </select>
+		                </div>
+		      </div>
+		      <div class="modal-footer d-flex justify-content-between">
+				<a class="btn btn-secondary " th:href="@{/}" href="detalle.html">Todos los Productos</a>
+		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+		<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 g-4">
+			<div th:each="p: ${productos}" class="col">
+				<div class="card h-100">
+					<img th:src="|https://picsum.photos/400/300?${p.idProducto}|" src="https://picsum.photos/400/300"
+						class="card-img-top" alt="...">
+					<div class="card-body">
+						<h5 th:text="${p.nombre}" class="card-title">Producto</h5>
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item d-flex justify-content-between">
+								<span class="fw-bold">Precio:</span>
+								<span th:text="${#numbers.formatCurrency(p.precio)}">1234,12€</span>
+							</li>
+							<li class="list-group-item d-flex justify-content-between">
+								<span class="fw-bold">Unidades:</span>
+								<span th:text="|${p.stock} unid|">5</span>
+							</li>
+						</ul>
+						
+					</div>
+					<div class="card-footer">
+						<div class="text-center">
+							<a class="btn btn-primary fs-5" th:href="@{/carrito(idProducto=${p.idProducto})}" href="carrito.html"><i class="bi bi-bag-plus-fill"></i></a>
+							<a class="btn btn-secondary fs-5" th:href="@{/producto/{id}(id=${p.idProducto})}" href="detalle.html"><i class="bi bi-search"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+</body>
+</html>

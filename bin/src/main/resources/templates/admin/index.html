@@ -1,0 +1,62 @@
+<!DOCTYPE html>  
+<html th:replace="~{_plantilla_global :: plantilla(~{::title}, ~{::main})}" xmlsn:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Administracion</title>
+</head>
+<body>
+
+
+	<main>
+				<!--
+				<pre th:text="'Locale: ' + ${miLocale}">Locale de request</pre>
+				<pre th:text="'País: ' + ${#locale.country}">País</pre>
+				<pre th:text="'Lenguaje: ' + ${#locale.language}">Lenguaje</pre>
+				-->
+				
+				<table class="table table-hover table-striped table-bordered">
+					<thead class="table-dark">
+						<tr>
+							<th>Id</th>
+							<th>Código de Barras</th>
+							<th>Nombre</th>
+							<th>Precio</th>
+							<th>Fecha de caducidad</th>
+							<th>Unidades</th>
+							<th>Estado</th>
+							<th>OPCIONES</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="p : ${productos}">
+							<td th:text="${p.idProducto}">1</td>
+							<td th:text="${p.codigoBarras}">1234567890123</td>
+							<td th:text="${p.nombre}">Producto1</td>
+							<td th:text="${#numbers.formatCurrency(p.precio)}">1234,12€</td>
+							<td th:text="${p.fechaCaducidad}">2000-01-02</td>
+							<td th:text="${p.stock}">5</td>
+							<td th:text="${p.estado  == true ? 'Disponible' : 'NO Disponible'}">Disponible</td>
+							<td>
+								<a class="btn btn-sm btn-primary" href="producto.html" th:href="@{/admin/producto(id=${p.idProducto})}">Editar</a>
+								<a onclick="return confirm('¿Estás seguro?')" class="btn btn-sm btn-danger" href="#" th:href="@{/admin/delete(id=${p.idProducto})}">Borrar</a>
+							</td>
+						</tr>
+					</tbody>
+					<tfoot class="table-dark">
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>
+								<a class="btn btn-sm btn-primary" href="producto.html" th:href="@{/admin/producto}">Añadir</a>
+							</td>
+						</tr>
+					</tfoot>
+				</table>
+	</main>
+</body>
+</html>
