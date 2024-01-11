@@ -27,7 +27,7 @@
 							<td th:text="${r.descripcion}">Descripcion</td>
 							<td>
 								<a class="btn btn-sm btn-primary" href="receta.html" th:href="@{/admin/receta(id=${r.id})}">Editar</a>
-								<a onclick="return confirm('¿Estás seguro?')" class="btn btn-sm btn-danger" href="#" th:href="@{/admin/receta(id=${r.id})}">Borrar</a>
+								<a onclick="return confirm('¿Estás seguro?')" class="btn btn-sm btn-danger" href="#" th:href="@{/admin/delete(id=${r.id})}">Borrar</a>
 							</td>
 						</tr>
 					</tbody>
